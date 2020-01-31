@@ -4,10 +4,7 @@ Scripts to process precinct results into an SVG and tileset using a variety of c
 
 # NPM things to have installed globally
 ```bash
-npm install -g ndjson-cli
-npm install -g topojson
-npm install -g d3
-npm install -g mapshaper
+npm install -g ndjson-cli topojson-client d3 mapshaper
 ```
 
 # Homebrew things
