@@ -36,15 +36,14 @@ topo2geo precincts=sheriff-results-geo.json < hennepin-precincts-final.json &&
 echo "Creating MBtiles for Mapbox upload ..." &&
 tippecanoe -o ./hennepin_sheriff.mbtiles -Z 2 -z 14 --generate-ids ./sheriff-results-geo.json &&
 
-# echo "Creating SVG ..." &&
-# mapshaper hennepin-precincts-geo.json \
-#   -quiet \
-#   -proj +proj=utm +zone=15 +ellps=GRS80 +datum=NAD83 +units=m +no_defs \
-#   -colorizer name=calcFill colors='#feb236,#6b5b95' nodata='#dfdfdf' categories='Rich Stanek,Dave Hutch' \
-#   -style fill='calcFill(winner)' \
-#   -o hennepin-sheriff.svg
+echo "Creating SVG ..." &&
+mapshaper sheriff-results-geo.json \
+  -quiet \
+  -proj +proj=utm +zone=15 +ellps=GRS80 +datum=NAD83 +units=m +no_defs \
+  -colorizer name=calcFill colors='#feb236,#6b5b95' nodata='#dfdfdf' categories='Rich Stanek,Dave Hutch' \
+  -style fill='calcFill(winner)' \
+  -o hennepin-sheriff.svg
 
 echo 'Cleaning up ...' &&
 rm *.tmp.* &&
 rm hennepin-precincts-final.json
-
