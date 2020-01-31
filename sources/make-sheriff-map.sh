@@ -33,9 +33,6 @@ ndjson-join '1' '1' <(ndjson-cat hennepin-precincts-longlat.ndjson) <(cat hennep
   ndjson-map '{"type": d[0].type, "bbox": d[0].bbox, "transform": d[0].transform, "objects": {"precincts": {"type": "GeometryCollection", "geometries": d[1].geometries}}, "arcs": d[0].arcs}' > hennepin-precincts-final.json &&
 topo2geo precincts=sheriff-results-geo.json < hennepin-precincts-final.json &&
 
-echo "Creating MBtiles for Mapbox upload ..." &&
-tippecanoe -o ./hennepin_sheriff.mbtiles -Z 2 -z 14 --generate-ids ./sheriff-results-geo.json &&
-
 echo "Creating SVG ..." &&
 mapshaper sheriff-results-geo.json \
   -quiet \
@@ -43,6 +40,10 @@ mapshaper sheriff-results-geo.json \
   -colorizer name=calcFill colors='#feb236,#6b5b95' nodata='#dfdfdf' categories='Rich Stanek,Dave Hutch' \
   -style fill='calcFill(winner)' \
   -o hennepin-sheriff.svg
+
+echo "Creating MBtiles for Mapbox upload ..." &&
+tippecanoe -o ./hennepin_sheriff.mbtiles -Z 2 -z 14 --generate-ids ./sheriff-results-geo.json &&
+
 
 echo 'Cleaning up ...' &&
 rm *.tmp.* &&

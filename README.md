@@ -1,8 +1,19 @@
-# 20181107 Sheriff Map
+# 2020303 Minnesota Primary precinct maps
 
-Lorem
+Scripts to process precinct results into an SVG and tileset using a variety of command-line tools
 
+# NPM things to have installed globally
+```bash
+npm install -g ndjson-cli
+npm install -g topojson
+npm install -g d3
+npm install -g mapshaper
+```
 
+# Homebrew things
+```bash
+brew install tippecanoe
+```
 
 ## Publishing
 
