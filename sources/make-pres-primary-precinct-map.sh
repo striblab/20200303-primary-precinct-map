@@ -23,7 +23,7 @@ echo "Creating SVG ..." &&
 mapshaper pres_primary_precincts-results-geo.json \
   -quiet \
   -proj +proj=utm +zone=15 +ellps=GRS80 +datum=NAD83 +units=m +no_defs \
-  -colorizer name=calcFill colors='#feb236,#6b5b95' nodata='#dfdfdf' categories='Rich Stanek,Dave Hutch' \
+  -colorizer name=calcFill colors='#528CAE,#755893,#65935F,#BED6E5,#BEBADA,#C6D99E,#9F9F9F,#9F9F9F' nodata='#dfdfdf' categories='Bernie Sanders,Pete Buttigieg,Amy Klobuchar,Joe Biden,Michael R. Bloomberg,Elizabeth Warren,Tom Steyer,Tulsi Gabbard' \
   -style fill='calcFill(winner)' \
   -o svg/statewide-pres_primary_precincts.svg
 

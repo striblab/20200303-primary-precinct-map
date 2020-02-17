@@ -8,4 +8,4 @@ precincts_voting;votes;votes_pct;votes_office" | \
 csv2json -s ";" primary_pres_precinct_20200303.csv | \
   ndjson-cat | \
   ndjson-split | \
-  ndjson-filter 'd.office_id == "0100"' > primary_pres_precinct_20200303.ndjson
+  ndjson-filter 'd.office_id == "0100" && d.party == "DFL"' > primary_pres_precinct_20200303.ndjson

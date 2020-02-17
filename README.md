@@ -2,15 +2,37 @@
 
 Scripts to process precinct results into an SVG and tileset using a variety of command-line tools
 
-# NPM things to have installed globally
+### NPM things to have installed globally
 ```bash
-npm install -g ndjson-cli topojson-client d3 mapshaper
+npm install -g ndjson-cli topojson-client d3 mapshaper shapefile
 ```
 
-# Homebrew things
+### Homebrew things
 ```bash
 brew install tippecanoe
 ```
+
+# Processing precinct data
+
+### 1. Create a precinct basemap topojson from the SOS precinct shapefile
+
+```
+cd sources
+./process_precinct_topojson.sh
+```
+
+### 2. Download results data from SOS site
+
+```
+./get-pres-precinct-data.sh
+```
+
+### 3. Join results and basemaps to make an SVG and .mbtiles
+
+```
+./make-pres-primary-precinct-maps.sh
+```
+
 
 ## Publishing
 
