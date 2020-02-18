@@ -21,23 +21,23 @@ const isMobile = (window.innerWidth <= popover_thresh || document.body.clientWid
 let popover = new Popover('#map-popover');
 let center = null;
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiY2pkZDNiIiwiYSI6ImNqZWJtZWVsYjBoYTAycm1raTltdnpvOWgifQ.aPWEg8C-5IJ0_7cXusY-1g';
+mapboxgl.accessToken = 'pk.eyJ1Ijoic3RhcnRyaWJ1bmUiLCJhIjoiY2sxYjRnNjdqMGtjOTNjcGY1cHJmZDBoMiJ9.St9lE8qlWR5jIjkPYd3Wqw';
 
 /********** MAKE MAP **********/
 
 const map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/cjdd3b/cjo7h26le2fov2rqlhq9f3muj',
+  style: 'mapbox://styles/startribune/ck6shlqld11uq1jnyvclo6tfd',
   center: [-93.472709, 45.014002],
-  zoom: 8.5,
-  minZoom: 8.5,
-  maxZoom: 12,
+  zoom: 6,
+  minZoom: 6,
+  maxZoom: 9,
   scrollZoom: false
 });
 
 // Setup basic map controls
 map.keyboard.disable();
-map.dragPan.disable();
+// map.dragPan.disable();
 if (utils.isMobile()) {
   map.dragRotate.disable();
   map.touchZoomRotate.disableRotation();
@@ -61,7 +61,7 @@ map.on('load', function() {
     "id": "precincts-highlighted",
     "type": "line",
     "source": "composite",
-    "source-layer": "sheriffresultsgeo",
+    "source-layer": "pres-primary-precinctsresultsgeo",
     "paint": {
       "line-color": "#000000"
     },
@@ -78,7 +78,7 @@ map.on('load', function() {
   });
 
   // Capture mousemove events on desktop and touch on mobile or small viewports
-  map.on('click', 'sheriffresultsgeo', function(e) {
+  map.on('click', 'pres-primary-precinctsresultsgeo', function(e) {
     let f = e.features[0];
 
     // Highlight precinct on touch
@@ -104,11 +104,11 @@ map.on('load', function() {
 
   // Handle mouseover events in desktop and non-mobile viewports
   if (!isMobile) {
-    map.on('mousemove', 'sheriffresultsgeo', function(e) {
+    map.on('mousemove', 'pres-primary-precinctsresultsgeo', function(e) {
       popup.open(e);
     });
 
-    map.on('mouseleave', 'sheriffresultsgeo', function() {
+    map.on('mouseleave', 'pres-primary-precinctsresultsgeo', function() {
       popup.close();
     });
   }
