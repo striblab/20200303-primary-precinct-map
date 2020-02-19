@@ -11,7 +11,6 @@ class Popover {
 
   _get_label(name) {
     let name_array = name.split(' ')
-    console.log('label-' + name_array[name_array.length - 1].toLowerCase());
     return 'label-' + name_array[name_array.length - 1].toLowerCase();
   }
 

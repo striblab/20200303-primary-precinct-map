@@ -14,8 +14,9 @@ import StribPopup from './shared/popup.js';
 import utilsFn from './utils.js';
 const utils = utilsFn({});
 
-const popover_thresh = 450; // The width of the map when tooltips turn to popovers
+const popover_thresh = 500; // The width of the map when tooltips turn to popovers
 const isMobile = (window.innerWidth <= popover_thresh || document.body.clientWidth) <= popover_thresh || utils.isMobile();
+const adaptive_ratio = utils.isMobile() ? 2 : 0.8; // Height/width ratio for adaptive map sizing
 
 // Probably a better way than declaring this up here, but ...
 let popover = new Popover('#map-popover');
@@ -24,6 +25,10 @@ let center = null;
 mapboxgl.accessToken = 'pk.eyJ1Ijoic3RhcnRyaWJ1bmUiLCJhIjoiY2sxYjRnNjdqMGtjOTNjcGY1cHJmZDBoMiJ9.St9lE8qlWR5jIjkPYd3Wqw';
 
 /********** MAKE MAP **********/
+
+// Set adaptive sizing
+let mapHeight = window.innerWidth * adaptive_ratio;
+document.getElementById("map").style.height = mapHeight.toString() + "px";
 
 const map = new mapboxgl.Map({
   container: 'map',
@@ -57,11 +62,12 @@ map.on('load', function() {
   $(map.getCanvas()).addClass('needsclick');
 
   // This is a layer purely for precinct highlights
+  // Fun fact: The source-layer here is the PARENT tileset of the layer you'll reference most other places, like for clicks.
   map.addLayer({
     "id": "precincts-highlighted",
     "type": "line",
     "source": "composite",
-    "source-layer": "pres-primary-precinctsresultsgeo",
+    "source-layer": "pres_primary_precinctsresultsgeo",
     "paint": {
       "line-color": "#000000"
     },
@@ -78,7 +84,7 @@ map.on('load', function() {
   });
 
   // Capture mousemove events on desktop and touch on mobile or small viewports
-  map.on('click', 'pres-primary-precinctsresultsgeo', function(e) {
+  map.on('click', 'primaryprecinctsresults', function(e) {
     let f = e.features[0];
 
     // Highlight precinct on touch
@@ -104,11 +110,11 @@ map.on('load', function() {
 
   // Handle mouseover events in desktop and non-mobile viewports
   if (!isMobile) {
-    map.on('mousemove', 'pres-primary-precinctsresultsgeo', function(e) {
+    map.on('mousemove', 'primaryprecinctsresults', function(e) {
       popup.open(e);
     });
 
-    map.on('mouseleave', 'pres-primary-precinctsresultsgeo', function() {
+    map.on('mouseleave', 'primaryprecinctsresults', function() {
       popup.close();
     });
   }

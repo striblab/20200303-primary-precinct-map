@@ -28,7 +28,7 @@ mapshaper pres_primary_precincts-results-geo.json \
   -each 'precinct_id=id+" "+precinct' \
   -o id-field=precinct_id svg/statewide-pres_primary_precincts.svg
 
-# TODO: 7-county SVG
+# 7-county SVG
 echo "Creating metro SVG ..." &&
 mapshaper pres_primary_precincts-results-geo.json \
   -quiet \
