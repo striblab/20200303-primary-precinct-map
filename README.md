@@ -4,7 +4,8 @@ Scripts to process precinct results into an SVG and tileset using a variety of c
 
 ### NPM things to have installed globally
 ```bash
-npm install -g ndjson-cli topojson-client d3 mapshaper shapefile
+# npm install -g ndjson-cli topojson-client d3 mapshaper shapefile @turf/turf
+npm install ndjson-cli topojson-client d3 mapshaper shapefile @turf/turf
 ```
 
 ### Homebrew things
@@ -19,6 +20,13 @@ brew install tippecanoe
 ```
 cd sources
 ./process_precinct_topojson.sh
+```
+
+### 1.5. If it doesn't already exist, make a mask to hide non-Minnesota states
+
+```
+cd sources
+./get_mask.sh
 ```
 
 ### 2. Download results data from SOS site

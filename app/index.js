@@ -28,10 +28,10 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic3RhcnRyaWJ1bmUiLCJhIjoiY2sxYjRnNjdqMGtjOTNjc
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/startribune/ck6shlqld11uq1jnyvclo6tfd',
-  center: [-93.472709, 45.014002],
+  center: [-94, 46.5],
   zoom: 6,
   minZoom: 6,
-  maxZoom: 9,
+  maxZoom: 11,
   scrollZoom: false
 });
 
@@ -70,7 +70,7 @@ map.on('load', function() {
 
   // Only allow dragpan after you zoom in
   map.on('zoomend', function(e) {
-    if (map.getZoom() < 9 ) {
+    if (map.getZoom() < 6 ) {
       map.dragPan.disable();
     } else {
       map.dragPan.enable();
