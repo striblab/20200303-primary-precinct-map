@@ -2,9 +2,10 @@
 
 Scripts to process precinct results into an SVG and tileset using a variety of command-line tools
 
-### NPM things to have installed globally
+### NPM things to have installed globally/locally
 ```bash
 # npm install -g ndjson-cli topojson-client d3 mapshaper shapefile @turf/turf
+npm install -g csv2json
 npm install ndjson-cli topojson-client d3 mapshaper shapefile @turf/turf
 ```
 
@@ -38,7 +39,7 @@ cd sources
 ### 3. Join results and basemaps to make an SVG and .mbtiles
 
 ```
-./make-pres-primary-precinct-maps.sh
+./make-pres-primary-precinct-map.sh
 ```
 
 
