@@ -125,7 +125,8 @@ $candColors: (
 );
 
 @each $cand, $color in $candColors {
-  .mapboxgl-popup .label-#{$cand} {
+  .mapboxgl-popup .label-#{$cand},
+  #map-legend .label-#{$cand} {
     width: 10px;
     height: 10px;
     border-radius: 50%;
@@ -279,7 +280,7 @@ $candColors: (
   position:absolute;
   top:8px;
   right: 50px;
-  width:225px;
+  // width:175px;
   font-size:11px;
   line-height:11px;
   padding: 7px 7px 7px 7px;
@@ -290,16 +291,38 @@ $candColors: (
   text-align:center;
   z-index:1;
 
+  .candidate {
+    display: block;
+    text-align: left;
+  }
+
   @media only screen and (max-width: 500px) {
     width:100%;
     position:static;
-    display:block;
+    display: block;
     margin-left:auto;
     margin-right:auto;
     max-width:250px;
     text-align:center;
     margin-top:20px;
     margin-bottom:20px;
+
+    #legend-items {
+      display:flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+
+    strong {
+      display: block;
+      text-align: left;
+    }
+
+    .candidate {
+      display: block;
+      flex: 1 0 75px;
+    }
   }
 
 }

@@ -28,7 +28,7 @@ class Popover {
 
     for (let i = 0; i < votes_obj.length; i++) {
       let candidate = votes_obj[i];
-      if (i < 8 && candidate.votes > 0) {
+      if (i < 6 && candidate.votes > 0) {
         popup_html += '<tr> \
           <td><span class="' + this._get_label(candidate.name) + '"></span>' + this._get_name(candidate.name) + '</td> \
           <td class="votes-right">' + this._format_votes(candidate.votes) + '</td> \

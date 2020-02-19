@@ -1,9 +1,17 @@
-<h2 class="hed">An urban/suburban divide</h2>
-<p class="chatter">Dave Hutchinson drew most of his support from the urban core of Minneapolis, whereas most of the precincts Rich Stanek won were in the less densely populated suburbs. This map shows who won each precinct, shaded by the number of votes cast per square mile.</p>
+<h2 class="hed">A very precincty heddy herey</h2>
+<p class="chatter">These are the precincts that try men's souls. That's an inspirational quote for you, you're welcome. These are the precincts that try men's souls. That's an inspirational quote for you, you're welcome.</p>
+<p class="chatter">These are the precincts that try men's souls. That's an inspirational quote for you, you're welcome. You will have to fight for it, but this paragraph really shouldn't be longer than this.</p>
 
 <div id="map-container">
   <div id="map-legend">
-    <div class="legend-row">
+    <strong>County leader</strong>
+    <div id="legend-items">
+    {#each active_candidates as cand}
+      <div class="candidate"><span class="label-{cand.toLowerCase()}"></span>{cand}</div>
+    {/each}
+    </div>
+
+    <!-- <div class="legend-row">
       <div class="bar hutch"></div>
       <div class="label">Won by Hutchinson</div>
     </div>
@@ -23,8 +31,18 @@
           No votes
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
   <div id="map"></div>
   <div id="map-popover"></div>
 </div>
+
+<script>
+	export default {
+		data() {
+			return {
+				active_candidates: ['Biden', 'Bloomberg', 'Buttigieg', 'Klobuchar', 'Sanders', 'Warren', 'Other']
+			};
+		}
+	};
+</script>
