@@ -29,7 +29,7 @@ p.chatter {
 
 .mapboxgl-popup {
   position: absolute;
-  max-width: 160px;
+  max-width: 220px;
   background-color: white;
   font-size:1em;
   border: 1px solid #565656;
@@ -99,35 +99,69 @@ p.chatter {
   display: none;
 }
 
-.mapboxgl-popup .label-hutch {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-left: 2px;
-  margin-right: 5px;
-  background-color:#6b5b95;
-}
+$candColors: (
+  sanders: #528CAE,
+  buttigieg: #755893,
+  klobuchar: #65935F,
+  biden: #BED6E5,
+  bloomberg: #BEBADA,
+  warren: #C6D99E,
 
-.mapboxgl-popup .label-stanek {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-left: 2px;
-  margin-right: 5px;
-  background-color:#2b7149;
-}
+  steyer: #9F9F9F,
+  gabbard: #9F9F9F,
+  other: #9F9F9F,
+  uncommitted: #9F9F9F,
 
-.mapboxgl-popup .label-oth {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-left: 2px;
-  margin-right: 5px;
-  background-color: #f7c272;
-} 
+  // dropped out
+  booker: #9F9F9F,
+  delaney: #9F9F9F,
+  castro: #9F9F9F,
+  williamson: #9F9F9F,
+  patrick: #9F9F9F,
+  bennet: #9F9F9F,
+  yang: #9F9F9F,
+);
+
+@each $cand, $color in $candColors {
+  .mapboxgl-popup .label-#{$cand} {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 2px;
+    margin-right: 5px;
+    background-color: $color;
+  }
+}
+// .mapboxgl-popup .label-hutch {
+//   width: 10px;
+//   height: 10px;
+//   border-radius: 50%;
+//   display: inline-block;
+//   margin-left: 2px;
+//   margin-right: 5px;
+//   background-color:#6b5b95;
+// }
+//
+// .mapboxgl-popup .label-stanek {
+//   width: 10px;
+//   height: 10px;
+//   border-radius: 50%;
+//   display: inline-block;
+//   margin-left: 2px;
+//   margin-right: 5px;
+//   background-color:#2b7149;
+// }
+//
+// .mapboxgl-popup .label-oth {
+//   width: 10px;
+//   height: 10px;
+//   border-radius: 50%;
+//   display: inline-block;
+//   margin-left: 2px;
+//   margin-right: 5px;
+//   background-color: #f7c272;
+// }
 
 /********** POPOVERS *********/
 
@@ -147,35 +181,52 @@ p.chatter {
   left: 50%;
   transform: translate(-50%, 0);
 
-  .label-stanek {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-left: 2px;
-    margin-right: 5px;
-    background-color:#2b7149;
+  .votes-right,
+  th.right {
+    text-align: right;
   }
 
-  .label-hutch {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-left: 2px;
-    margin-right: 5px;
-    background-color:#6b5b95;
-  }  
+  @each $cand, $color in $candColors {
+    .label-#{$cand} {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-left: 2px;
+      margin-right: 5px;
+      background-color: $color;
+    }
+  }
 
-  .label-oth {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-left: 2px;
-    margin-right: 5px;
-    background-color: #f7c272;
-  }  
+  // .label-stanek {
+  //   width: 10px;
+  //   height: 10px;
+  //   border-radius: 50%;
+  //   display: inline-block;
+  //   margin-left: 2px;
+  //   margin-right: 5px;
+  //   background-color:#2b7149;
+  // }
+  //
+  // .label-hutch {
+  //   width: 10px;
+  //   height: 10px;
+  //   border-radius: 50%;
+  //   display: inline-block;
+  //   margin-left: 2px;
+  //   margin-right: 5px;
+  //   background-color:#6b5b95;
+  // }
+  //
+  // .label-oth {
+  //   width: 10px;
+  //   height: 10px;
+  //   border-radius: 50%;
+  //   display: inline-block;
+  //   margin-left: 2px;
+  //   margin-right: 5px;
+  //   background-color: #f7c272;
+  // }
 
   table {
       margin-bottom:0em;
@@ -196,7 +247,7 @@ p.chatter {
 
   #popover-header {
     margin-bottom:5px;
-  
+
     h4 {
       float:left;
       text-align:left;

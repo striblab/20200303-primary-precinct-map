@@ -10,28 +10,39 @@ class StribPopup {
   }
 
   _get_name(name) {
-    if (name == 'Rich Stanek') {
-      return 'Stanek';
-    } else if (name == 'Dave Hutch') {
-      return 'Hutchinson';
-    } else {
-      return 'label-oth';
-    }
+    let name_array = name.split(' ')
+    return name_array[name_array.length - 1]
   }
 
-  _get_label(party) {
-    if (party == 'Rich Stanek') {
-      return 'label-stanek';
-    } else if (party == 'Dave Hutch') {
-      return 'label-hutch';
-    } else {
-      return 'label-oth';
-    }
+  _get_label(name) {
+    let name_array = name.split(' ')
+    console.log('label-' + name_array[name_array.length - 1].toLowerCase());
+    return 'label-' + name_array[name_array.length - 1].toLowerCase();
+  }
+
+  _format_votes(input) {
+    // https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+    return input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  _format_pct(input) {
+    return Math.round(input * 10) / 10 + '%';
   }
 
   _layout(precinct, votes_obj) {
-    let winner = votes_obj[0];
-    let second = votes_obj[1];
+
+    let popup_html = ''
+
+    for (let i = 0; i < votes_obj.length; i++) {
+      let candidate = votes_obj[i];
+      if (i < 8 && candidate.votes > 0) {
+        popup_html += '<tr> \
+          <td><span class="' + this._get_label(candidate.name) + '"></span>' + this._get_name(candidate.name) + '</td> \
+          <td id="votes-d" class="right">' + this._format_votes(candidate.votes) + '</td> \
+          <td id="votes-d" class="right">' + this._format_pct(candidate.votes_pct) + '</td> \
+        </tr>'
+      }
+    }
 
     return '<div class=".mapboxgl-popup"> \
       <h4 id="title">' + precinct + '</h4> \
@@ -40,18 +51,10 @@ class StribPopup {
           <tr> \
             <th>Candidate</th> \
             <th class="right">Votes</th> \
+            <th class="right">Pct.</th> \
           </tr> \
         </thead> \
-        <tbody> \
-          <tr> \
-            <td><span class="' + this._get_label(winner.name) + '"></span>' + this._get_name(winner.name) + '</td> \
-            <td id="votes-d" class="right">' + winner.votes + '</td> \
-          </tr> \
-          <tr> \
-            <td><span class="' + this._get_label(second.name) + '"></span>' + this._get_name(second.name) + '</td> \
-            <td id="votes-r" class="right">' + second.votes + '</td> \
-          </tr>\
-        </tbody> \
+        <tbody>' + popup_html + '</tbody> \
       </table> \
     </div>';
   }
@@ -63,13 +66,16 @@ class StribPopup {
     let precinct = e.features[0].properties.precinct;
     let votes_obj = eval(e.features[0].properties.votes_obj);
 
+    // List appears to be pre-sorted but best make sure
+    votes_obj.sort((a, b) => b.votes - a.votes);
+
     // Populate the popup and set its coordinates
     // based on the feature found.
     this.popup.setLngLat(e.lngLat)
       .setHTML(this._layout(precinct, votes_obj))
       .addTo(this.map);
   }
- 
+
   close() {
     this.popup.remove();
   }
