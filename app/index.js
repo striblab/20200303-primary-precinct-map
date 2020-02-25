@@ -16,7 +16,7 @@ const utils = utilsFn({});
 
 const popover_thresh = 500; // The width of the map when tooltips turn to popovers
 const isMobile = (window.innerWidth <= popover_thresh || document.body.clientWidth) <= popover_thresh || utils.isMobile();
-const adaptive_ratio = utils.isMobile() ? 1.1 : 0.8; // Height/width ratio for adaptive map sizing
+const adaptive_ratio = utils.isMobile() ? 1.1 : 1.3; // Height/width ratio for adaptive map sizing
 
 // Probably a better way than declaring this up here, but ...
 let popover = new Popover('#map-popover');
@@ -37,7 +37,7 @@ const map = new mapboxgl.Map({
   zoom: 2,
   minZoom: 2,
   maxZoom: 13,
-  maxBounds: [-97.25, 43.4, -89.53, 49.5],
+  maxBounds: [-97.25, 43.2, -89.53, 49.5],
   scrollZoom: false
 });
 

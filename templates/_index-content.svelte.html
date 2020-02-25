@@ -1,40 +1,37 @@
-<h2 class="hed">A very precincty heddy herey</h2>
-<p class="chatter">These are the precincts that try men's souls. That's an inspirational quote for you, you're welcome. These are the precincts that try men's souls. That's an inspirational quote for you, you're welcome.</p>
-<p class="chatter">These are the precincts that try men's souls. That's an inspirational quote for you, you're welcome. You will have to fight for it, but this paragraph really shouldn't be longer than this.</p>
-
-<div id="map-container">
-  <div id="map-legend">
-    <strong>County leader</strong>
-    <div id="legend-items">
-    {#each active_candidates as cand}
-      <div class="candidate"><span class="label-{cand.toLowerCase()}"></span>{cand}</div>
-    {/each}
-    </div>
-
-    <!-- <div class="legend-row">
-      <div class="bar hutch"></div>
-      <div class="label">Won by Hutchinson</div>
-    </div>
-
-    <div class="legend-row">
-      <div class="bar stanek"></div>
-      <div class="label">Won by Stanek</div>
-    </div>
-
-    <div class="legend-footer">
-      <div class="footer-left">
-        <div class="label">← →<br />Vote density</div>
-      </div>
-      <div class="footer-right">
-        <div class="label">
-          <div class="square"></div>
-          No votes
-        </div>
-      </div>
-    </div> -->
+<div class="strib-styles ssa ssb ssc">
+  <div class="container-lg elex-header">
+    <h1>How Minnesota voted in the 2020 presidential primary, neighborhood by neighborhood</h1>
+    <p class="byline">By Michael Corey and Jeff Hargarten • <span>Star Tribune</span></p>
+    <!-- share -->
   </div>
-  <div id="map"></div>
-  <div id="map-popover"></div>
+
+  <div class="container-lg">
+
+    <section class="leadin">
+      <p>Texty texty.</p>
+      <p>Herey herey.</p>
+    </section>
+
+    <section class="map-section">
+      <div id="map-container">
+        <div id="map-legend">
+          <strong>County leader</strong>
+          <div id="legend-items">
+          {#each active_candidates as cand}
+            <div class="candidate"><span class="label-{cand.toLowerCase()}"></span>{cand}</div>
+          {/each}
+          </div>
+        </div>
+        <div id="map"></div>
+        <div id="map-popover"></div>
+      </div>
+    </section>
+
+    <section class="credits">
+      <p>Source: Precinct map from <a href="https://gisdata.mn.gov/">Minnesota Geospatial Commons</a>; results from <a href="https://www.sos.state.mn.us/elections-voting/election-results">Minnesota Secretary of State</a></p>
+    </section>
+
+  </div>
 </div>
 
 <script>
