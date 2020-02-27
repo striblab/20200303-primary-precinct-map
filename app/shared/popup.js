@@ -37,8 +37,8 @@ class StribPopup {
       if (i < 6 && candidate.votes > 0) {
         popup_html += '<tr> \
           <td><span class="' + this._get_label(candidate.name) + '"></span>' + this._get_name(candidate.name) + '</td> \
-          <td id="votes-d" class="right">' + this._format_votes(candidate.votes) + '</td> \
-          <td id="votes-d" class="right">' + this._format_pct(candidate.votes_pct) + '</td> \
+          <td class="votes-right">' + this._format_votes(candidate.votes) + '</td> \
+          <td class="votes-right">' + this._format_pct(candidate.votes_pct) + '</td> \
         </tr>'
       }
     }
