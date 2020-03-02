@@ -15,7 +15,7 @@ ndjson-split 'd.objects.precincts.geometries' < basemaps/mn_precincts_topojson.n
    ndjson-reduce 'p.geometries.push(d), p' '{"type": "GeometryCollection", "geometries":[]}' > statewide-precincts.geometries.tmp.ndjson &&
 
 echo "Putting it all together ..." &&
-ndjson-join '1' '1' <(ndjson-cat basemaps/mn_precincts_topojson.ndjson) <(cat statewide-precincts.geometries.tmp.ndjson) |
+ndjson-join '1' '1' <(ndjson-cats basemaps/mn_precincts_topojson.ndjson) <(cat statewide-precincts.geometries.tmp.ndjson) |
   ndjson-map '{"type": d[0].type, "bbox": d[0].bbox, "transform": d[0].transform, "objects": {"precincts": {"type": "GeometryCollection", "geometries": d[1].geometries}}, "arcs": d[0].arcs}' > statewide-precincts-final.json &&
 topo2geo precincts=pres_primary_precincts-results-geo.json < statewide-precincts-final.json &&
 
@@ -23,7 +23,7 @@ echo "Creating statewide SVG ..." &&
 mapshaper pres_primary_precincts-results-geo.json \
   -quiet \
   -proj +proj=utm +zone=15 +ellps=WGS84 +datum=WGS84 +units=m +no_defs \
-  -colorizer name=calcFill colors='#528CAE,#755893,#65935F,#BED6E5,#BEBADA,#C6D99E,#9F9F9F,#9F9F9F' nodata='#dfdfdf' categories='Bernie Sanders,Pete Buttigieg,Amy Klobuchar,Joe Biden,Michael R. Bloomberg,Elizabeth Warren,Tom Steyer,Tulsi Gabbard' \
+  -colorizer name=calcFill colors='#528CAE,#BED6E5,#BEBADA,#755893,#BEBADA,#C6D99E,#65935F,#9F9F9F' nodata='#EAEAEA' categories='Bernie Sanders,Pete Buttigieg,Amy Klobuchar,Joe Biden,Michael R. Bloomberg,Elizabeth Warren,Tom Steyer,Tulsi Gabbard' \
   -style fill='calcFill(winner)' \
   -each 'precinct_id=id+" "+precinct' \
   -o id-field=precinct_id svg/statewide-pres_primary_precincts.svg
@@ -34,7 +34,7 @@ mapshaper pres_primary_precincts-results-geo.json \
   -quiet \
   -filter '"Hennepin,Ramsey,Dakota,Scott,Washington,Carver,Anoka".indexOf(county) > -1' \
   -proj +proj=utm +zone=15 +ellps=WGS84 +datum=WGS84 +units=m +no_defs \
-  -colorizer name=calcFill colors='#528CAE,#755893,#65935F,#BED6E5,#BEBADA,#C6D99E,#9F9F9F,#9F9F9F' nodata='#dfdfdf' categories='Bernie Sanders,Pete Buttigieg,Amy Klobuchar,Joe Biden,Michael R. Bloomberg,Elizabeth Warren,Tom Steyer,Tulsi Gabbard' \
+  -colorizer name=calcFill colors='#528CAE,#BED6E5,#BEBADA,#755893,#BEBADA,#C6D99E,#65935F,#9F9F9F' nodata='#EAEAEA' categories='Bernie Sanders,Pete Buttigieg,Amy Klobuchar,Joe Biden,Michael R. Bloomberg,Elizabeth Warren,Tom Steyer,Tulsi Gabbard' \
   -style fill='calcFill(winner)' \
   -each 'precinct_id=id+" "+precinct' \
   -o id-field=precinct_id svg/metro-pres_primary_precincts.svg
