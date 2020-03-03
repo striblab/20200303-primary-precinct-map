@@ -15,7 +15,7 @@
     <section class="map-section">
       <div id="map-container">
         <div id="map-legend">
-          <strong>County leader</strong>
+          <strong>Precinct leader</strong>
           <div id="legend-items">
           {#each active_candidates as cand}
             <div class="candidate"><span class="label-{cand.toLowerCase()}"></span>{cand}</div>
@@ -25,6 +25,11 @@
         <div id="map"></div>
         <div id="map-popover"></div>
       </div>
+    </section>
+
+    <section class="leadin">
+      <p>Texty texty.</p>
+      <p>Herey herey.</p>
     </section>
 
     <section class="credits">
