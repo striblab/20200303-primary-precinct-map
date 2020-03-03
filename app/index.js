@@ -70,7 +70,6 @@ class HomeReset {
   }
 }
 const toggleControl = new HomeReset();
-map.addControl(toggleControl,'top-right');
 
 // Setup basic map controls
 map.keyboard.disable();
@@ -79,8 +78,11 @@ if (utils.isMobile()) {
   map.dragRotate.disable();
   map.touchZoomRotate.disableRotation();
 } else {
+
   map.getCanvas().style.cursor = 'pointer';
-  map.addControl(new mapboxgl.NavigationControl({ showCompass: false }));
+  map.addControl(new mapboxgl.NavigationControl({ showCompass: false }),'top-right');
+  map.addControl(toggleControl,'top-right');
+
   $('.my-custom-control').on('click', function(){
     map.jumpTo({
       center: [-94.6859, 47.7296],
