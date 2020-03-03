@@ -103,6 +103,8 @@ section.leadin {
 .monitor_button, .my-custom-control {
   color:#000000 !important;
   font-weight:bold !important;
+  font-family:'StateFaceRegular' !important;
+  font-size:1.3em !important;
 
   @media only screen and (max-width: 400px) {
     display:none!important;
