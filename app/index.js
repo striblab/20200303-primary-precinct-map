@@ -41,6 +41,37 @@ const map = new mapboxgl.Map({
   scrollZoom: false
 });
 
+/********** SPECIAL RESET BUTTON **********/
+class HomeReset {
+  onAdd(map){
+    this.map = map;
+    this.container = document.createElement('div');
+    this.container.className = 'mapboxgl-ctrl my-custom-control mapboxgl-ctrl-group';
+
+    const button = this._createButton('mapboxgl-ctrl-icon monitor_button')
+    this.container.appendChild(button);
+    return this.container;
+  }
+  onRemove(){
+    this.container.parentNode.removeChild(this.container);
+    this.map = undefined;
+  }
+  _createButton(className) {
+    const el = window.document.createElement('button')
+    el.className = className;
+    el.textContent = 'MN';
+    el.addEventListener('click',(e)=>{
+      e.style.display = 'none'
+      console.log(e);
+      // e.preventDefault()
+      e.stopPropagation()
+    },false )
+    return el;
+  }
+}
+const toggleControl = new HomeReset();
+map.addControl(toggleControl,'top-right');
+
 // Setup basic map controls
 map.keyboard.disable();
 // map.dragPan.disable();
@@ -50,7 +81,15 @@ if (utils.isMobile()) {
 } else {
   map.getCanvas().style.cursor = 'pointer';
   map.addControl(new mapboxgl.NavigationControl({ showCompass: false }));
+  $('.my-custom-control').on('click', function(){
+    map.jumpTo({
+      center: [-94.6859, 47.7296],
+      zoom: 2,
+    });
+  });
 }
+
+
 
 /********** MAP BEHAVIORS **********/
 

@@ -100,6 +100,16 @@ section.leadin {
   position:relative;
 }
 
+.monitor_button, .my-custom-control {
+  color:#000000 !important;
+  font-weight:bold !important;
+
+  @media only screen and (max-width: 400px) {
+    display:none!important;
+  }
+  
+}
+
 .credits {
   clear: both;
   margin-top: 1em;
