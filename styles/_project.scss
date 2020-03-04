@@ -103,6 +103,8 @@ section.leadin {
 .monitor_button, .my-custom-control {
   color:#000000 !important;
   font-weight:bold !important;
+  font-size:1.3em !important;
+  font-family: 'StateFaceRegular' !important;
 
   @media only screen and (max-width: 400px) {
     display:none!important;
@@ -205,19 +207,19 @@ $candColors: (
   bloomberg: #65935F,
   warren: #C6D99E,
 
-  steyer: #9F9F9F,
-  gabbard: #9F9F9F,
-  other: #9F9F9F,
-  uncommitted: #9F9F9F,
+  steyer: #e7e7e7,
+  gabbard: #e7e7e7,
+  other: #e7e7e7,
+  uncommitted: #e7e7e7,
 
   // dropped out
-  booker: #9F9F9F,
-  delaney: #9F9F9F,
-  castro: #9F9F9F,
-  williamson: #9F9F9F,
-  patrick: #9F9F9F,
-  bennet: #9F9F9F,
-  yang: #9F9F9F,
+  booker: #e7e7e7,
+  delaney: #e7e7e7,
+  castro: #e7e7e7,
+  williamson: #e7e7e7,
+  patrick: #e7e7e7,
+  bennet: #e7e7e7,
+  yang: #e7e7e7,
 );
 
 @each $cand, $color in $candColors {

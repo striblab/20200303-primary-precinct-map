@@ -48,7 +48,7 @@ class HomeReset {
     this.container = document.createElement('div');
     this.container.className = 'mapboxgl-ctrl my-custom-control mapboxgl-ctrl-group';
 
-    const button = this._createButton('mapboxgl-ctrl-icon monitor_button')
+    const button = this._createButton('mapboxgl-ctrl-icon StateFace monitor_button')
     this.container.appendChild(button);
     return this.container;
   }
@@ -59,7 +59,7 @@ class HomeReset {
   _createButton(className) {
     const el = window.document.createElement('button')
     el.className = className;
-    el.textContent = 'MN';
+    el.textContent = 'W';
     el.addEventListener('click',(e)=>{
       e.style.display = 'none'
       console.log(e);
