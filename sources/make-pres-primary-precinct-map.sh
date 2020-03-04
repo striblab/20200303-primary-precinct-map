@@ -4,7 +4,7 @@ cat primary_pres_precinct_20200303.ndjson | \
   ndjson-reduce '(p[d.id] = p[d.id] || []).push({name: d.name, votes: d.votes, votes_pct: d.votes_pct}), p' '{}' | \
   ndjson-split 'Object.keys(d).map(key => ({id: key, votes: d[key]}))' | \
   ndjson-map '{"id": d.id, "votes": d.votes.filter(obj => obj.name != "").sort((a, b) => b.votes - a.votes)}' | \
-  ndjson-map '{"id": d.id, "votes": d.votes, "winner": d.votes[0].votes != d.votes[1].votes ? d.votes[0].name : "even", "winner_margin": (d.votes[0].votes_pct - d.votes[1].votes_pct).toFixed(2)}' | \
+  ndjson-map '{"id": d.id, "votes": d.votes, "winner": d.votes.every(o => o.votes == 0) ? "no-votes" : d.votes[0].votes != d.votes[1].votes ? d.votes[0].name : "even", "winner_margin": (d.votes[0].votes_pct - d.votes[1].votes_pct).toFixed(2)}' | \
   ndjson-map '{"id": d.id, "winner": d.winner, "winner_margin": d.winner_margin, "total_votes": d.votes.reduce((a, b) => a + b.votes, 0), "votes_obj": d.votes}' > joined.tmp.ndjson &&
 
 echo "Joining results to precinct map ..." &&
@@ -23,7 +23,7 @@ echo "Creating statewide SVG ..." &&
 mapshaper pres_primary_precincts-results-geo.json \
   -quiet \
   -proj +proj=utm +zone=15 +ellps=WGS84 +datum=WGS84 +units=m +no_defs \
-  -colorizer name=calcFill colors='#528CAE,#BED6E5,#BEBADA,#755893,#BEBADA,#C6D99E,#65935F,#9F9F9F' nodata='#EAEAEA' categories='Bernie Sanders,Pete Buttigieg,Amy Klobuchar,Joseph Biden,Michael R. Bloomberg,Elizabeth Warren,Tom Steyer,Tulsi Gabbard' \
+  -colorizer name=calcFill colors='#528CAE,#BED6E5,#BEBADA,#755893,#65935F,#C6D99E,#65935F,#9F9F9F,#FFFFFF,#E7E7E7' nodata='#EAEAEA' categories='Bernie Sanders,Pete Buttigieg,Amy Klobuchar,Joseph Biden,Michael R. Bloomberg,Elizabeth Warren,Tom Steyer,Tulsi Gabbard,no-votes,even' \
   -style fill='calcFill(winner)' \
   -each 'precinct_id=id+" "+precinct' \
   -o id-field=precinct_id svg/statewide-pres_primary_precincts.svg
@@ -34,7 +34,7 @@ mapshaper pres_primary_precincts-results-geo.json \
   -quiet \
   -filter '"Hennepin,Ramsey,Dakota,Scott,Washington,Carver,Anoka".indexOf(county) > -1' \
   -proj +proj=utm +zone=15 +ellps=WGS84 +datum=WGS84 +units=m +no_defs \
-  -colorizer name=calcFill colors='#528CAE,#BED6E5,#BEBADA,#755893,#BEBADA,#C6D99E,#65935F,#9F9F9F' nodata='#EAEAEA' categories='Bernie Sanders,Pete Buttigieg,Amy Klobuchar,Joseph Biden,Michael R. Bloomberg,Elizabeth Warren,Tom Steyer,Tulsi Gabbard' \
+  -colorizer name=calcFill colors='#528CAE,#BED6E5,#BEBADA,#755893,#65935F,#C6D99E,#65935F,#9F9F9F,#FFFFFF,#E7E7E7' nodata='#EAEAEA' categories='Bernie Sanders,Pete Buttigieg,Amy Klobuchar,Joseph Biden,Michael R. Bloomberg,Elizabeth Warren,Tom Steyer,Tulsi Gabbard,no-votes,even' \
   -style fill='calcFill(winner)' \
   -each 'precinct_id=id+" "+precinct' \
   -o id-field=precinct_id svg/metro-pres_primary_precincts.svg

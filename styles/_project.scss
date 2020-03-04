@@ -109,7 +109,7 @@ section.leadin {
   @media only screen and (max-width: 400px) {
     display:none!important;
   }
-  
+
 }
 
 .credits {
@@ -238,6 +238,17 @@ $candColors: (
 .votes-right,
 th.right {
   text-align: right;
+}
+
+#map-legend .label-no-votes {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 2px;
+  margin-right: 5px;
+  background-color: white;
+  border: 1px solid black;
 }
 
 // .mapboxgl-popup .label-d {

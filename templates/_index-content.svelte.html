@@ -9,7 +9,7 @@
 
     <section class="leadin">
       <p>Former Vice President Joe Biden's <a href="http://www.startribune.com/minnesota-primary-results-live-presidential-2020-vote-election-president-county/567017141/?refresh=true">decisive win in Minnesota's Democratic primary</a> echoed his big victories in other Super Tuesday states as he surged to lead the party's presidential nomination battle.</p>
-      
+
       <p>After Minnesota's U.S. Sen. Amy Klobuchar unexpectedly suspended her campaign the day prior and endorsed Biden, primary voters seemingly responded, allowing him to defeat the race's previous front-runner U.S. Sen. Bernie Sanders, with whom he split the state's pledged delegates.</p>
 
       <p>Sanders performed strongly in Minneapolis and St. Paul, but the Twin Cities suburbs, and much of greater Minnesota, trended in Biden's direction.</p>
@@ -25,6 +25,7 @@
           {#each active_candidates as cand}
             <div class="candidate"><span class="label-{cand.toLowerCase()}"></span>{cand}</div>
           {/each}
+          <div class="candidate"><span class="label-no-votes"></span>No votes</div>
           </div>
         </div>
         <div id="map"></div>
@@ -61,7 +62,7 @@
 	export default {
 		data() {
 			return {
-				active_candidates: ['Biden', 'Bloomberg', 'Buttigieg', 'Klobuchar', 'Sanders', 'Warren', 'Other']
+				active_candidates: ['Biden', 'Bloomberg', 'Buttigieg', 'Klobuchar', 'Sanders', 'Warren', 'Other', ]
 			};
 		}
 	};
