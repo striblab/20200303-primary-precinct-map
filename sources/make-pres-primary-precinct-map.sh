@@ -15,7 +15,7 @@ ndjson-split 'd.objects.precincts.geometries' < basemaps/mn_precincts_topojson.n
    ndjson-reduce 'p.geometries.push(d), p' '{"type": "GeometryCollection", "geometries":[]}' > statewide-precincts.geometries.tmp.ndjson &&
 
 echo "Putting it all together ..." &&
-ndjson-join '1' '1' <(ndjson-cats basemaps/mn_precincts_topojson.ndjson) <(cat statewide-precincts.geometries.tmp.ndjson) |
+ndjson-join '1' '1' <(ndjson-cat basemaps/mn_precincts_topojson.ndjson) <(cat statewide-precincts.geometries.tmp.ndjson) |
   ndjson-map '{"type": d[0].type, "bbox": d[0].bbox, "transform": d[0].transform, "objects": {"precincts": {"type": "GeometryCollection", "geometries": d[1].geometries}}, "arcs": d[0].arcs}' > statewide-precincts-final.json &&
 topo2geo precincts=pres_primary_precincts-results-geo.json < statewide-precincts-final.json &&
 
