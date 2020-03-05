@@ -200,26 +200,27 @@ section.leadin {
 }
 
 $candColors: (
-  sanders: #528CAE,
-  buttigieg: #BED6E5,
+  sanders: #52a0ad,
   klobuchar: #BEBADA,
   biden: #755893,
-  bloomberg: #65935F,
-  warren: #C6D99E,
 
-  steyer: #e7e7e7,
-  gabbard: #e7e7e7,
-  other: #e7e7e7,
-  uncommitted: #e7e7e7,
+
+  steyer: #ccc,
+  gabbard: #ccc,
+  other: #ccc,
+  uncommitted: #ccc,
 
   // dropped out
-  booker: #e7e7e7,
-  delaney: #e7e7e7,
-  castro: #e7e7e7,
-  williamson: #e7e7e7,
-  patrick: #e7e7e7,
-  bennet: #e7e7e7,
-  yang: #e7e7e7,
+  buttigieg: #ccc,
+  bloomberg: #ccc,
+  warren: #ccc,
+  booker: #ccc,
+  delaney: #ccc,
+  castro: #ccc,
+  williamson: #ccc,
+  patrick: #ccc,
+  bennet: #ccc,
+  yang: #ccc,
 );
 
 @each $cand, $color in $candColors {

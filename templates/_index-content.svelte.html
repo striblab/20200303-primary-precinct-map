@@ -25,6 +25,7 @@
           {#each active_candidates as cand}
             <div class="candidate"><span class="label-{cand.toLowerCase()}"></span>{cand}</div>
           {/each}
+          <div class="candidate"><span class="label-other"></span>Other/tie</div>
           <div class="candidate"><span class="label-no-votes"></span>No votes</div>
           </div>
         </div>
@@ -62,7 +63,7 @@
 	export default {
 		data() {
 			return {
-				active_candidates: ['Biden', 'Bloomberg', 'Buttigieg', 'Klobuchar', 'Sanders', 'Warren', 'Other', ]
+				active_candidates: ['Biden', 'Sanders', 'Klobuchar']
 			};
 		}
 	};
